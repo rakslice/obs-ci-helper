@@ -8,7 +8,7 @@ This isn't a ready-for-prime-time quality CI solution, but if you really need to
 
 **Setup**
 
-1. Configure your build job with a `_service` that pulls from a git branch and puts the full 40-digit git revision into the version number before the final `-` (see [&#95;service&#95;example](_service_example) for an example; there is more discussion in [the old OBS wiki docs](https://en.opensuse.org/openSUSE:Build_Service_Concept_SourceService#tar_scm)).
+1. Configure your build job with a `_service` that pulls from a git branch and puts the full 40-digit git revision into the version number before the final `-` (see [&#95;service&#95;example](_service_example) for an example; there is more discussion in [the old OBS wiki docs](https://en.opensuse.org/openSUSE:Build_Service_Concept_SourceService#Example_2:_GIT_integration)).
 2. Create a `settings.json` file, using [settings.example.json](settings.example.json) as a template.  Enter your OBS project details and login info, and GitHub account and project name.
 3. Create a GitHub login token for this script to use
 	1. Go to your [GitHub account settings' Personal access tokens page](https://github.com/settings/tokens)
