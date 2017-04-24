@@ -1,0 +1,14 @@
+{
+  "obs": {
+    "project": "your_obs_project",
+    "package": "your_package",
+    "username": "your_obs_username",
+    "password": "your_obs_password"
+  },
+
+  "github": {
+    "token": "your_github_token",
+    "owner": "your_account",
+    "repo": "your_project"
+  }
+}

@@ -1,0 +1,21 @@
+<services>
+    <!-- this is an example of how to configure your _service file to work with obs-ci-helper -->
+    <service name="tar_scm">
+        <param name="scm">git</param>
+        <param name="url">https://github.com/your_account/your_project.git</param>
+        <param name="filename">your_project</param>
+        <!-- this starts with a number to work around https://github.com/openSUSE/obs-service-set_version/issues/24 -->
+        <param name="versionprefix">1your_branch</param>
+        <param name="revision">your_branch</param>
+        <!-- this is the most important change:
+             ensure that the versionformat contains the full 40-digit git revision (%H) -->
+        <param name="versionformat">%ct.%H</param>
+    </service>
+    <service name="recompress">
+        <param name="file">*1your_branch*.tar</param>
+        <param name="compression">gz</param>
+    </service>
+    <service name="set_version">
+        <param name="basename">your_project</param>
+    </service>
+</services>
