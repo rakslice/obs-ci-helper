@@ -4,7 +4,7 @@
         <param name="scm">git</param>
         <param name="url">https://github.com/your_account/your_project.git</param>
         <param name="filename">your_project</param>
-        <!-- this starts with a number to work around https://github.com/openSUSE/obs-service-set_version/issues/24 -->
+        <!-- start the package version with a digit to work around https://github.com/openSUSE/obs-service-set_version/issues/24 -->
         <param name="versionprefix">1your_branch</param>
         <param name="revision">your_branch</param>
         <!-- this is the most important change:
