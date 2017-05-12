@@ -8,12 +8,10 @@ import urllib
 import urllib2
 from xml.dom.minidom import parse, Element
 
-
 """
 Get build results (success/failure/error) from an openbuildservice job,
 and put the statuses onto the corresponding commits in github
 """
-
 
 OBS_STATUS_BUILDING = "building"
 OBS_STATUS_SUCCESS = "succeeded"
@@ -69,7 +67,15 @@ class BuildRevisionInfo(object):
     def add_jobhist(self, repo, arch, xml_jobhist):
         """":type xml_jobhist: xml.dom.minidom.Element"""
         key = self._create_key(repo, arch)
-        assert key not in self._xml_jobhists, "duplicate entries for repo %s arch %s" % (repo, arch)
+        if key in self._xml_jobhists:
+            msg = "duplicate entries for repo %s arch %s" % (repo, arch)
+            print msg
+            print "old:"
+            print self._xml_jobhists[key].toprettyxml()
+            print "new:"
+            print xml_jobhist.toprettyxml()
+
+            assert False, msg
         self._xml_jobhists[key] = xml_jobhist
 
     @staticmethod
@@ -177,7 +183,9 @@ class OpenBuildServiceAPI(object):
 
                 for cur_jobhist in jobhists:
 
-                    revision = cur_jobhist.getAttribute("srcmd5")
+                    srcmd5 = cur_jobhist.getAttribute("srcmd5")
+                    start_time = cur_jobhist.getAttribute("starttime")
+                    revision = "%s_%s" % (srcmd5, start_time)
 
                     if revision not in build_info_by_revision:
                         build_info_by_revision[revision] = BuildRevisionInfo(revision, self)
